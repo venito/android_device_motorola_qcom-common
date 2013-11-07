@@ -40,11 +40,11 @@
  ********************************************************************/
 int check_bootinfo(const char * field, const char* value)
 {
-    char data[1024], bootreason[32];
+    char data[1024], bootreason[PROPERTY_VALUE_MAX];
     int fd, n;
     char *x, *pwrup_rsn;
 
-    memset(bootreason, 0, 32);
+    memset(bootreason, 0, PROPERTY_VALUE_MAX);
 
     fd = open("/proc/bootinfo", O_RDONLY);
     if (fd < 0) return 0;
@@ -84,9 +84,9 @@ int check_bootinfo(const char * field, const char* value)
  * ******************************************************************/
 int check_abnormal_reboot(void)
 {
-    char abnormal_boot[32];
+    char abnormal_boot[PROPERTY_VALUE_MAX];
 
-    memset(abnormal_boot, 0, 32);
+    memset(abnormal_boot, 0, PROPERTY_VALUE_MAX);
 
     property_get("ro.bootmode", abnormal_boot, "unknown");
 
@@ -147,9 +147,9 @@ int check_com_reset(void)
  ********************************************************************/
 int boot_reason_charge_only(void)
 {
-    char powerup_reason[32];
+    char powerup_reason[PROPERTY_VALUE_MAX];
 
-    memset(powerup_reason, 0, 32);
+    memset(powerup_reason, 0, PROPERTY_VALUE_MAX);
 
     property_get("ro.bootmode", powerup_reason, "unknown");
 
@@ -174,9 +174,9 @@ int boot_reason_charge_only(void)
  * ******************************************************************/
 int check_cid_recover_boot(void)
 {
-    char cid_recover_boot[32];
+    char cid_recover_boot[PROPERTY_VALUE_MAX];
 
-    memset(cid_recover_boot, 0, 32);
+    memset(cid_recover_boot, 0, PROPERTY_VALUE_MAX);
 
     property_get("ro.bootmode", cid_recover_boot, "unknown");
 
